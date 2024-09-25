@@ -1,5 +1,5 @@
 -- limit
--- select 조회 결과에 반환할 행 갯수제한alter
+-- select 조회 결과에 반환할 행 갯수제한
 
 select
 	*

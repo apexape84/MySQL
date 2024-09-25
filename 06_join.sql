@@ -79,10 +79,13 @@ from
 -- cross join은 가능한 모든 조합을 반환하는 합집합 
 
 select
-	a.manu_menu,
+	a.menu_name,
     b.category_name
 from
 	tbl_menu a cross join tbl_category b;
+    
+select category_name from tbl_category;
+select menu_name from tbl_menu;
     
 -- self join
 
@@ -93,6 +96,8 @@ from
 	tbl_category a join tbl_category b
     on
     a.ref_category_code = b.category_code;
+    
+
     
 select
 	category_name,

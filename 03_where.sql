@@ -90,7 +90,7 @@ where
 	category_code in (4, 5, 6) ;
     
     
--- in null 활용
+-- in, null 활용
 -- 모든 데이터 선택
 -- null값을 포함한것 제외
 select
