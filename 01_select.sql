@@ -4,7 +4,7 @@ select -- 조회해줘
 	menu_name -- 무엇을?
 from -- 어디서?    
 	tbl_menu;
-    
+    --
 -- tbl_menu 테이블에서 메뉴코드와 카테고리코드, 메뉴가격을 조회해줘
 select
 	menu_code,
