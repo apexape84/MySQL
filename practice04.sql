@@ -1,4 +1,5 @@
 -- 1.부서코드가 노옹철 사원과 같은 소속의 직원 명단 조회
+use employee;
 select EMP_NAME,DEPT_CODE
 from employee
 where DEPT_CODE =(
@@ -86,7 +87,7 @@ where SALARY in (
 	group by DEPT_CODE);  
 
 replace INTO EMPLOYEE (EMP_ID,EMP_NAME,EMP_NO,EMAIL,PHONE,DEPT_CODE,JOB_CODE,SAL_LEVEL,SALARY,BONUS,MANAGER_ID,HIRE_DATE,ENT_DATE,ENT_YN) VALUES 
-('201','송종기','631156-1548654','song_jk@greedy.com','01045686656',null,'J2','S1',2550000,null,'200',STR_TO_DATE('01/09/01','%y/%m/%d'),null,'N');
+('201','송종기','631156-1548654','song_jk@greedy.com','01045686656','d9','J2','S1',2550000,null,'200',STR_TO_DATE('01/09/01','%y/%m/%d'),null,'N');
 replace INTO EMPLOYEE (EMP_ID,EMP_NAME,EMP_NO,EMAIL,PHONE,DEPT_CODE,JOB_CODE,SAL_LEVEL,SALARY,BONUS,MANAGER_ID,HIRE_DATE,ENT_DATE,ENT_YN) VALUES 
 ('201','송종기','631156-1548654','song_jk@greedy.com','01045686656','D9','J2','S1',6000000,null,'200',STR_TO_DATE('01/09/01','%y/%m/%d'),null,'N');
 -- 여기서부터 난이도 극상
