@@ -152,11 +152,10 @@ limit 5;
 -- 부서의 부서명과, 부서별 급여 합계 조회
 -- 힌트 : SUM(E2.SALARY) * 0.2
 
-select EMP_ID, EMP_NAME, j.JOB_NAME, SALARY
-from employee e join job j using(JOB_CODE),
-	(
-	select DEPT_CODE, sum(SALARY)
+select DEPT_TITLE, sum(SALARY) as depsum
+from employee e left join department d on (e.DEPT_CODE=d.DEPT_ID)
+group by DEPT_TITLE
+having depsum > 0.2*
+	(select sum(SALARY)
 	from employee
-	group by DEPT_CODE) as sum
-where SALARY in;
-
+	group by null);
