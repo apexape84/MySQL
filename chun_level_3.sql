@@ -199,4 +199,5 @@ where CATEGORY=(
 	select  CATEGORY
 	from tb_department
 	where DEPARTMENT_NAME = '환경조경학과')
-group by DEPARTMENT_NO;
+group by DEPARTMENT_NO
+order by DEPARTMENT_NAME;
