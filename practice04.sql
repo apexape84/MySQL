@@ -40,6 +40,7 @@ where SALARY = (
 
 -- 5.부서별 최고 급여를 받는 직원의 이름, 직급, 부서, 급여 조회
 -- 힌트 : where 절에 subquery
+use employee;
 select EMP_NAME, d.DEPT_TITLE, j.JOB_NAME, SALARY,DEPT_CODE
 from employee e join job j using(JOB_CODE) left join department d on (e.DEPT_CODE=d.DEPT_ID);
 
