@@ -125,7 +125,7 @@ where c.class_NO in
     and substring(TERM_NO,3,2)='22';
     
 -- 13.예체능 계열 과목 중 과목 담당교수를 한명도 배정받지 못한 과목을 찾아 그 과목 이름과 학과 이름을 출력하는 SQL 문장을 작성하시오.
-
+use chundb;
 select CLASS_NAME, DEPARTMENT_NAME
 from tb_class left join tb_class_professor tb using(CLASS_NO) left join tb_department d using(DEPARTMENT_NO)
 where tb.PROFESSOR_NO is null and d.CATEGORY=('예체능')
@@ -146,18 +146,11 @@ where s.DEPARTMENT_NO=(
     
 -- 15 휴학생이 아닌 학생 중 평점이 4.0 이상인 학생을 찾아 그 학생의 학번, 이름, 학과 이름, 평점을 출력하는 SQL 문을 작성하시오.
 
-select s.STUDENT_NO, STUDENT_NAME, DEPARTMENT_NAME, aa.pt
+select s.STUDENT_NO, STUDENT_NAME, DEPARTMENT_NAME,ABSENCE_YN, Truncate(avg(POINT),1)
 from tb_student s left join tb_department using(DEPARTMENT_NO) left join tb_grade using(STUDENT_NO)
-	,(select round(avg(POINT),1) pt
-	from tb_student left join tb_grade using(STUDENT_NO)
-	group by STUDENT_NO) aa
-where ABSENCE_YN = 'N' and aa.pt>=4;
-
-;
-
-    select STUDENT_NAME, round(avg(POINT),1) pt
-	from tb_student left join tb_grade using(STUDENT_NO)
-	group by STUDENT_NO;
+where ABSENCE_YN = 'n'
+group by s.STUDENT_NO
+having floor(avg(point)) >= 4.0 ;
     
 -- 16.환경조경학과 전공과목들의 과목 별 평점을 파악할 수 있는 SQL 문을 작성하시오.
 select CLASS_NO, CLASS_NAME, round(avg(POINT),1) 학점평균
