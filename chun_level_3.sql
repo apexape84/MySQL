@@ -160,21 +160,43 @@ where ABSENCE_YN = 'N' and aa.pt>=4;
 	group by STUDENT_NO;
     
 -- 16.환경조경학과 전공과목들의 과목 별 평점을 파악할 수 있는 SQL 문을 작성하시오.
-
-
+select CLASS_NO, CLASS_NAME, round(avg(POINT),1) 학점평균
+from tb_class c join tb_grade using(CLASS_NO)
+where c.DEPARTMENT_NO=(    
+	select  DEPARTMENT_NO
+	from tb_department
+	where DEPARTMENT_NAME = '환경조경학과') and CLASS_TYPE like '전공%'
+group by CLASS_NO;
 
 -- 17.춘 기술대학교에 다니고 있는 최경희 학생과 같은 과 학생들의 이름과 주소를 출력하는 SQL 문을 작성하시오.
-
+select STUDENT_NAME 이름, STUDENT_ADDRESS 주소
+from tb_student
+where DEPARTMENT_NO=(    
+	select  DEPARTMENT_NO
+	from tb_student
+	where STUDENT_NAME = '최경희')
+order by STUDENT_NAME;
 
 
 -- 18.국어국문학과에서 총 평점이 가장 높은 학생의 이름과 학번을 표시하는 SQL 문을 작성하시오.
 
-
-
+select STUDENT_NO, STUDENT_NAME 이름
+from tb_student join tb_grade using(STUDENT_NO)
+where DEPARTMENT_NO=(    
+	select  DEPARTMENT_NO
+	from tb_department
+	where DEPARTMENT_NAME = '국어국문학과')
+group by STUDENT_NO
+order by avg(POINT) desc
+limit 1;
 
 -- 19.춘 기술대학교의 "환경조경학과"가 속한 같은 계열 학과들의 학과 별 전공과목 평점을 파악하기 위한 적절한 SQL 문을 찾아내시오.
 -- 단, 출력헤더는 "계열 학과명", "전공평점"으로 표시되도록 하고, 평점은 소수점 한 자리까지만 반올림하여 표시되도록 한다.
     
-    
-
-
+select DEPARTMENT_NAME '계열 학과명' , round(avg(POINT),1) '전공평점'
+from tb_class c join tb_grade g using(CLASS_NO) join tb_department d using (DEPARTMENT_NO)
+where CATEGORY=(    
+	select  CATEGORY
+	from tb_department
+	where DEPARTMENT_NAME = '환경조경학과')
+group by DEPARTMENT_NO;
